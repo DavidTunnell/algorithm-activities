@@ -1,7 +1,6 @@
-//Intro to Whiteboarding - https://coding-bootcamp-whiteboarding-algorithms.readthedocs-hosted.com/en/latest/
-//From Glassdoor: "Describe and code an algorithm that returns the first duplicate character in a string."
+//"Describe and code an algorithm that returns the first repeated character in a string."
 
-function firstDup(myString) {
+function firstRepeat(myString) {
     var charArray = myString.toUpperCase().split("");
 
     for (let index = 0; index < charArray.length; index++) {
@@ -18,7 +17,7 @@ function firstDup(myString) {
 }
 
 function main() {
-    firstDup('Welcome to my home in Mississippi.');
+    firstRepeat('Welcome to my home in Mississippi.');
 }
 
 main();
