@@ -7,13 +7,13 @@ function firstDuplicate(myString) {
         for (let f = i + 1; f < charArray.length; f++) {
             //if equal and not a space
             if (charArray[i] == charArray[f] && charArray[i] != " ") {
-                return "Character at index: " + i + " returned. (" +
-                    charArray[i] + ")";
+                return "Character at index: " + i + " | Value: " +
+                    charArray[i];
             }
         }
     }
     //if no duplicates
-    return null;
+    return "No duplicate found.";
 }
 
 function main() {
