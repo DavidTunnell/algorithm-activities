@@ -2,7 +2,7 @@
 
 The solutions to these can be run using node. 
 
-`node .\FirstDup.js`
+`node .\FirstRepeat.js`
 
 Output:
 
