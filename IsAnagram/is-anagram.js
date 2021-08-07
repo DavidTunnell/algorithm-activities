@@ -13,6 +13,7 @@ var isAnagram = function(strA, strB) {
     }
     // iterate through each value in strA and filter it out of strB
     for (let i = 0; i < strA.length; i++) {
+        // https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array
         strB = strB.filter(item => item !== strA[i]);
     }
     //if strB is empty after all of that it's an anagram
