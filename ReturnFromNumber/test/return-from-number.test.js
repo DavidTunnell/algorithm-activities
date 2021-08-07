@@ -1,9 +1,5 @@
 var expect = chai.expect;
 
-// before(function() {
-//     sinon.spy(Array.prototype, "indexOf");
-// });
-
 describe("linearSearch", function() {
     it("should return a negative version if number is passed", function() {
         // - Arrange -
