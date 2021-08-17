@@ -15,16 +15,16 @@ function mySet() {
     }
 
     this.add = function(element) {
-        //notice this is using the has function created above
-        //only add if it doesn't exist already (doesn't have)
-        if (!this.has(element)) {
-            collection.push(element);
-            return true;
+            //notice this is using the has function created above
+            //only add if it doesn't exist already (doesn't have)
+            if (!this.has(element)) {
+                collection.push(element);
+                return true;
+            }
+            return false;
         }
-        return false;
-    }
-
-    this.remove = function() {
+        //fix REMOVE
+    this.remove = function(element) {
         //if it exists in the set
         if (this.has(element)) {
             // get index location of where it is in set/collection
@@ -118,17 +118,18 @@ console.log(setA.union(setB).values());
 var test = setA.difference(setB).values();
 console.log(test);
 console.log(setA.subset(setB));
+console.log(setA.remove("j"));
 
 //es6 - https://2ality.com/2015/01/es6-set-operations.html
 
-var setC = new Set();
-var setD = new Set();
-setC.add("a");
-setC.add("j");
-setD.add("a");
-setD.add("b");
-setD.add("c");
-setD.add("d");
-setD.delete("a");
-console.log(setD.has("a"));
-console.log(setD.has("d")); //es6 add does not add true or false but the set itself
+// var setC = new Set();
+// var setD = new Set();
+// setC.add("a");
+// setC.add("j");
+// setD.add("a");
+// setD.add("b");
+// setD.add("c");
+// setD.add("d");
+// setD.delete("a");
+// console.log(setD.has("a"));
+// console.log(setD.has("d")); //es6 add does not add true or false but the set itself
