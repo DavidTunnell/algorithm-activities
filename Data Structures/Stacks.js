@@ -41,6 +41,7 @@ console.log(result);
 //or just using javascript
 var test = [];
 var word = "12345";
+erg
 var backwards = "";
 for (let i = 0; i < word.length; i++) {
     test.push(word[i]);
@@ -50,3 +51,4 @@ for (let i = 0; i < word.length; i++) {
     backwards += test.pop();
 }
 console.log(backwards);
+v

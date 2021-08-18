@@ -15,15 +15,14 @@ function mySet() {
     }
 
     this.add = function(element) {
-            //notice this is using the has function created above
-            //only add if it doesn't exist already (doesn't have)
-            if (!this.has(element)) {
-                collection.push(element);
-                return true;
-            }
-            return false;
+        //notice this is using the has function created above
+        //only add if it doesn't exist already (doesn't have)
+        if (!this.has(element)) {
+            collection.push(element);
+            return true;
         }
-        //fix REMOVE
+        return false;
+    }
     this.remove = function(element) {
         //if it exists in the set
         if (this.has(element)) {
@@ -122,14 +121,14 @@ console.log(setA.remove("j"));
 
 //es6 - https://2ality.com/2015/01/es6-set-operations.html
 
-// var setC = new Set();
-// var setD = new Set();
-// setC.add("a");
-// setC.add("j");
-// setD.add("a");
-// setD.add("b");
-// setD.add("c");
-// setD.add("d");
-// setD.delete("a");
-// console.log(setD.has("a"));
-// console.log(setD.has("d")); //es6 add does not add true or false but the set itself
+var setC = new Set();
+var setD = new Set();
+setC.add("a");
+setC.add("j");
+setD.add("a");
+setD.add("b");
+setD.add("c");
+setD.add("d");
+setD.delete("a");
+console.log(setD.has("a"));
+console.log(setD.has("d")); //es6 add does not add true or false but the set itself
