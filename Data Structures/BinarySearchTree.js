@@ -192,7 +192,119 @@ class BinarySearchTree {
         // assigning the this.root to what is returned from the function ultimately
         this.root = removeNode(this.root, data);
     }
+
+    //height in a tree represents the distance from the root node to any given leaf node
+    findMaxHeight(node = this.root) {
+        if (node == null) {
+            return -1;
+        }
+        let left = this.findMaxHeight(node.left);
+        let right = this.findMaxHeight(node.right);
+        if (left > right) {
+            return left + 1;
+        } else {
+            return right + 1;
+        }
+    }
+
+    //minimum height is the distance from the root node to the 1st leaf node without 2 children
+    findMinHeight(node = this.root) {
+        if (node == null) {
+            return -1;
+        }
+        let left = this.findMinHeight(node.left);
+        let right = this.findMinHeight(node.right);
+        if (left < right) {
+            return left + 1;
+        } else {
+            return right + 1;
+        }
+    }
+
+    // values between min and max will be at most 1
+    //a balanced tree is more efficient for searching. It's possible to update the code here to self balance
+    isBalanced() {
+        return (this.findMinHeight() >= this.findMaxHeight() - 1)
+    }
+
+    //These below are ways to traverse the tree and find all the values in the tree!
+
+    //for in order traversal uou begin at the left most node and end at the right most node 
+    inOrder() {
+        if (this.root == null) {
+            return null;
+        } else {
+            var result = new Array();
+
+            function traverseInOrder(node) {
+                //a short circuit if the 1st thing is true it will run the 2nd command, this is instead of an if statement
+                //so if a node on the left exists, run this again and find the next one until the end
+                node.left && traverseInOrder(node.left);
+                result.push(node.data);
+                node.right && traverseInOrder(node.right);
+            }
+            traverseInOrder(this.root);
+            return result;
+        };
+    }
+
+    // for preorder traversal you explore the root nodes before the leaves, so it explores roots before leafs 
+    preOrder() {
+        if (this.root == null) {
+            return null;
+        } else {
+            var result = new Array();
+
+            function traversePreOrder(node) {
+                result.push(node.data);
+                node.left && traversePreOrder(node.left);
+                node.right && traversePreOrder(node.right);
+            };
+            traversePreOrder(this.root);
+            return result;
+        };
+    }
+
+    //post order traversal is the opposite, leaf nodes before roots aka breadth first search
+    postOrder() {
+        if (this.root == null) {
+            return null;
+        } else {
+            var result = new Array();
+
+            function traversePostOrder(node) {
+                node.left && traversePostOrder(node.left);
+                node.right && traversePostOrder(node.right);
+                result.push(node.data);
+            };
+            traversePostOrder(this.root);
+            return result;
+        }
+    }
+
+    //
+    levelOrder() {
+        let result = [];
+        let Q = [];
+        if (this.root != null) {
+            Q.push(this.root);
+            while (Q.length > 0) {
+                let node = Q.shift();
+                result.push(node.data);
+                if (node.left != null) {
+                    Q.push(node.left);
+                };
+                if (node.right != null) {
+                    Q.push(node.right);
+                };
+            };
+            return result;
+        } else {
+            return null;
+        };
+    };
 }
+
 
 const bst = new BinarySearchTree();
 
@@ -213,3 +325,16 @@ console.log(bst.isPresent(7));
 console.log(bst.find(22));
 console.log(bst.find(1));
 console.log(bst.find(7));
+console.log("\n");
+console.log(bst.findMinHeight());
+console.log(bst.findMaxHeight());
+console.log(bst.isBalanced());
+bst.add(10);
+console.log(bst.findMinHeight());
+console.log(bst.findMaxHeight());
+console.log(bst.isBalanced());
+console.log('inOrder: ' + bst.inOrder());
+console.log('preOrder: ' + bst.preOrder());
+console.log('postOrder: ' + bst.postOrder());
+
+console.log('levelOrder: ' + bst.levelOrder());
