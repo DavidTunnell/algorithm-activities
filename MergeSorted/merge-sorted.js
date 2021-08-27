@@ -19,7 +19,7 @@ function mergeSorted(arr1, arr2) {
     //uses queue as a structure, it adds to the temp array the lowest one and then removes from front of queue
     while (arr1.length || arr2.length) {
         //if the lengths of the arrays are even, because of the if logic below, 
-        //arr1[0] will become empty/undefined and then wont be comparable, this fixes this senario
+        //arr1[0] will become empty/undefined and then wont be comparable, this fixes this scenario
         //is this true backwards? ^
         if (typeof arr1[0] === 'undefined') {
             console.log(arr1[0]);
