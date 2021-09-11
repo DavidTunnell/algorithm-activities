@@ -2,7 +2,7 @@
  * Increment the large integer by one and return the resulting array of digits.
  * https://leetcode.com/problems/plus-one/
  */
-var digits = [1, 2, 3]; //[1,2,4]
+var digits = [1, 2, 3, 9]; //[1,2,4]
 var digits2 = [4, 3, 2, 1]; //[4,3,2,2]
 var digits3 = [0]; //[1]
 var digits4 = [9]; //[1,0]
@@ -12,50 +12,34 @@ var digits6 = [
     7, 4, 9, 4, 7, 0, 1, 1, 1, 7, 4, 0, 0, 6,
 ]; //[7, 2, 8, 5, 0, 9, 1, 2, 9, 5, 3, 6, 6, 7, 3, 2, 8, 4, 3, 7, 9, 5, 7, 7, 4, 7, 4, 9, 4, 7, 0, 1, 1, 1, 7, 4, 0, 0, 7,]
 var digits7 = [8, 8, 2, 5, 2, 9, 9, 3, 3, 8, 5, 7, 0, 6, 6]; //[8,8,2,5,2,9,9,3,3,8,5,7,0,6,7]
+var digits8 = [4, 3, 2, 1]; //[4,3,2,2]
+var digits9 = [
+    9, 8, 2, 1, 3, 3, 1, 8, 1, 4, 4, 7, 2, 7, 2, 0, 5, 6, 8, 9, 7, 7, 4, 3,
+]; //[9,8,2,1,3,3,1,8,1,4,4,7,2,7,2,0,5,6,8,9,7,7,4,4] -- 7, 2, 7, 2, 0 missing somehow
+var digits10 = [
+    9, 0, 0, 8, 8, 4, 9, 6, 8, 2, 1, 1, 3, 9, 4, 9, 5, 1, 1, 2, 5, 4, 9, 1, 2,
+    0, 8, 1, 4, 1, 9, 6, 3, 9, 6, 1, 5, 7,
+]; //[9,0,0,8,8,4,9,6,8,2,1,1,3,9,4,9,5,1,1,2,5,4,9,1,2,0,8,1,4,1,9,6,3,9,6,1,5,8]
 
 var plusOne = function (digits) {
-    let concatInt = "";
-    var subSet = [];
-    var subSetHolder = [];
-    for (let i = 0; i < digits.length; i++) {
-        subSet.push(digits[i]);
-        if (i % 10 === 0 && i !== 0) {
-            subSetHolder.push(subSet);
-            subSet = [];
-        } else if (digits.length > 15 && digits.length - i < 10) {
-            subSetHolder.push(digits.slice(i, digits.length));
-            break;
-        }
-    }
-    if (subSetHolder.length == 0) {
-        for (let f = 0; f < subSet.length; f++) {
-            concatInt += subSet[f].toString();
-        }
-        concatInt = parseInt(concatInt) + 1;
-        var backToString = concatInt.toString();
+    var lastDigit = digits[digits.length - 1];
+    if (lastDigit !== 9) {
+        digits[digits.length - 1] = digits[digits.length - 1] + 1;
     } else {
-        var concatLocal = "";
-        var combinedArray = [];
-        for (let j = 0; j < subSetHolder.length; j++) {
-            for (let k = 0; k < subSetHolder[j].length; k++) {
-                concatLocal += subSetHolder[j][k];
+        //else 9 is last
+        for (let i = digits.length - 1; i >= 0; i--) {
+            if (digits[i] == 9 && i == 0) {
+                digits[i] = 0;
+                digits.unshift(1);
+            } else if (digits[i] == 9) {
+                digits[i] = 0;
+            } else {
+                digits[i] = digits[i] + 1;
+                break;
             }
-            combinedArray.push(concatLocal);
-            concatLocal = "";
-        }
-        combinedArray[combinedArray.length - 1] = (
-            parseInt(combinedArray[combinedArray.length - 1]) + 1
-        ).toString();
-        var backToString = "";
-        for (let x = 0; x < combinedArray.length; x++) {
-            backToString += combinedArray[x];
         }
     }
-    var returnArray = [];
-    for (let i = 0; i < backToString.length; i++) {
-        returnArray.push(parseInt(backToString[i]));
-    }
-    return returnArray;
+    return digits;
 };
 
 console.log(plusOne(digits));
@@ -65,3 +49,6 @@ console.log(plusOne(digits4));
 console.log(plusOne(digits5));
 console.log(plusOne(digits6));
 console.log(plusOne(digits7));
+console.log(plusOne(digits8));
+console.log(plusOne(digits9));
+console.log(plusOne(digits10));
