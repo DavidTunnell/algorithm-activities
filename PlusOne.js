@@ -11,13 +11,10 @@ var digits6 = [
     7, 2, 8, 5, 0, 9, 1, 2, 9, 5, 3, 6, 6, 7, 3, 2, 8, 4, 3, 7, 9, 5, 7, 7, 4,
     7, 4, 9, 4, 7, 0, 1, 1, 1, 7, 4, 0, 0, 6,
 ]; //[7, 2, 8, 5, 0, 9, 1, 2, 9, 5, 3, 6, 6, 7, 3, 2, 8, 4, 3, 7, 9, 5, 7, 7, 4, 7, 4, 9, 4, 7, 0, 1, 1, 1, 7, 4, 0, 0, 7,]
+var digits7 = [8, 8, 2, 5, 2, 9, 9, 3, 3, 8, 5, 7, 0, 6, 6]; //[8,8,2,5,2,9,9,3,3,8,5,7,0,6,7]
 
 var plusOne = function (digits) {
     let concatInt = "";
-    let concatIntLong = "";
-
-    //need to divide each section of 15 separately then process
-    //IDEA: 2d array
     var subSet = [];
     var subSetHolder = [];
     for (let i = 0; i < digits.length; i++) {
@@ -26,39 +23,45 @@ var plusOne = function (digits) {
             subSetHolder.push(subSet);
             subSet = [];
         } else if (digits.length > 15 && digits.length - i < 10) {
-            subSetHolder.push(subSet);
+            subSetHolder.push(digits.slice(i, digits.length));
+            break;
         }
     }
     if (subSetHolder.length == 0) {
-        return subSet;
+        for (let f = 0; f < subSet.length; f++) {
+            concatInt += subSet[f].toString();
+        }
+        concatInt = parseInt(concatInt) + 1;
+        var backToString = concatInt.toString();
     } else {
-        return subSetHolder;
+        var concatLocal = "";
+        var combinedArray = [];
+        for (let j = 0; j < subSetHolder.length; j++) {
+            for (let k = 0; k < subSetHolder[j].length; k++) {
+                concatLocal += subSetHolder[j][k];
+            }
+            combinedArray.push(concatLocal);
+            concatLocal = "";
+        }
+        combinedArray[combinedArray.length - 1] = (
+            parseInt(combinedArray[combinedArray.length - 1]) + 1
+        ).toString();
+        var backToString = "";
+        for (let x = 0; x < combinedArray.length; x++) {
+            backToString += combinedArray[x];
+        }
     }
-
-    // for (let f = 0; f < digits.length; f++) {
-    //     subSet.push():
-    //     if (f % 14 == 0) {
-    //         concatInt += digits[f].toString();
-    //     } else {
-    //         concatIntLong += digits[f].toString();
-    //     }
-    // }
-    // if (concatIntLong == "") {
-    //     concatInt = parseInt(concatInt) + 1;//you dont add to it here if
-    // } else {
-    //     concatIntLong = parseInt(concatIntLong) + 1;
-    // }
-    // var backToString = concatInt.toString() + concatIntLong.toString();
-    // var returnArray = [];
-    // for (let i = 0; i < backToString.length; i++) {
-    //     returnArray.push(parseInt(backToString[i]));
-    // }
-    // return returnArray;
+    var returnArray = [];
+    for (let i = 0; i < backToString.length; i++) {
+        returnArray.push(parseInt(backToString[i]));
+    }
+    return returnArray;
 };
 
-// console.log(plusOne(digits));
-// console.log(plusOne(digits2));
-// console.log(plusOne(digits3));
-// console.log(plusOne(digits4));
-// console.log(plusOne(digits5));
+console.log(plusOne(digits));
+console.log(plusOne(digits2));
+console.log(plusOne(digits3));
+console.log(plusOne(digits4));
+console.log(plusOne(digits5));
 console.log(plusOne(digits6));
+console.log(plusOne(digits7));
