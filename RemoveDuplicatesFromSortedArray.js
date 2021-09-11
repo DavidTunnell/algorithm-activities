@@ -1,7 +1,7 @@
 /* Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same.
  * Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
  * 
- * Update the array that comes in and return the number k that is left???
+ * Update the array that comes in and return the number k that is left.
  * 
  * Return k after placing the final result in the first k slots of nums.
  */
