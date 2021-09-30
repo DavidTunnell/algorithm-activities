@@ -1,19 +1,13 @@
-//Whiteboarding Interview Questions - https://coding-bootcamp-whiteboarding-algorithms.readthedocs-hosted.com/en/latest/modules/whiteboarding-interview-questions/
-//Reverse a String
+// Write code to return a new string with all of the characters in `str` reversed.
+// You may NOT use the built-in reverse method
 
-function firstDup(myString) {
-    var charArray = myString.split("");
-    var reversedString = "";
-
-    for (let index = charArray.length; index >= 0; index--) {
-        reversedString += charArray[index];
+const reverse = (str) => {
+    var returnStr = "";
+    for (let i = str.length - 1; i >= 0; i--) {
+        returnStr += str[i];
     }
-    return reversedString;
-}
+    return returnStr;
+};
 
-function main() {
-    var myRevString = firstDup('Welcome to my home in Mississippi.');
-    console.log(myRevString);
-}
-
-main();
+const rev = reverse("Welcome to my home in Mississippi.");
+console.log(rev);
